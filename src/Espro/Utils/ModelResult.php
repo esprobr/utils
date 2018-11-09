@@ -13,9 +13,9 @@ class ModelResult {
     protected $result;
 
     /**
-     * @param bool $_status
-     * @param null $_message
-     * @param null $_result
+     * @param mixed $_status
+     * @param mixed $_message
+     * @param mixed $_result
      */
     public function __construct($_status = false, $_message = null, $_result = null) {
         self::setStatus($_status);
@@ -48,7 +48,7 @@ class ModelResult {
     }
 
     /**
-     * @param $_result
+     * @param mixed $_result
      * @return ModelResult
      */
     public function setResult($_result) {
