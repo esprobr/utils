@@ -1,0 +1,21 @@
+{
+  "name"  : "esprobr/utils",
+  "description": "Helper Classes",
+  "version" : "0.0.1",
+  "authors": [
+    {
+      "name": "Wesley Sousa",
+      "email": "wesleyyps@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+
+    "symfony/http-foundation": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Espro": "src/"
+    }
+  }
+}
