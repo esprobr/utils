@@ -13,6 +13,13 @@ class Url
      */
     public static function exists( $_url, $_timeOut = 5 )
     {
+        if(!isset(Response::$statusTexts[-1])) {
+            Response::$statusTexts[-1] = "Invalid url";
+        }
+        if(!isset(Response::$statusTexts[0])) {
+            Response::$statusTexts[0] = "URL not found";
+        }
+
         $result = new ModelResult(
             false,
             Response::$statusTexts[-1]
