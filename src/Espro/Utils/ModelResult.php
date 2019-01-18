@@ -8,19 +8,34 @@ namespace Espro\Utils;
  *
  */
 class ModelResult {
+    /**
+     * @var mixed
+     */
     protected $status;
+    /**
+     * @var mixed
+     */
+    protected $secondaryStatus;
+    /**
+     * @var mixed
+     */
     protected $message;
+    /**
+     * @var mixed
+     */
     protected $result;
 
     /**
      * @param mixed $_status
      * @param mixed $_message
      * @param mixed $_result
+     * @param mixed $_secondaryStatus
      */
-    public function __construct($_status = false, $_message = null, $_result = null) {
+    public function __construct($_status = false, $_message = null, $_result = null, $_secondaryStatus = null) {
         self::setStatus($_status);
         self::setMessage($_message);
         self::setResult($_result);
+        self::setSecondaryStatus( $_secondaryStatus );
     }
 
     public function setStatus($_status) {
@@ -77,5 +92,33 @@ class ModelResult {
     public function isStatus($_status)
     {
         return $this->status == $_status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSecondaryStatus()
+    {
+        return $this->secondaryStatus;
+    }
+
+    /**
+     * @param mixed $_secondaryStatus
+     * @return $this
+     */
+    public function setSecondaryStatus($_secondaryStatus)
+    {
+        $this->secondaryStatus = $_secondaryStatus;
+        return $this;
+    }
+
+    public function isSecondaryStatus($_status)
+    {
+        return $this->secondaryStatus == $_status;
+    }
+
+    public function secondaryStatusIn(array $_statusList = [])
+    {
+        return in_array($this->secondaryStatus, $_statusList);
     }
 }
