@@ -11,7 +11,7 @@ class ModelResult {
     /**
      * @var mixed
      */
-    protected $status;
+    protected $primaryStatus;
     /**
      * @var mixed
      */
@@ -26,31 +26,31 @@ class ModelResult {
     protected $result;
 
     /**
-     * @param mixed $_status
+     * @param mixed $_primaryStatus
      * @param mixed $_message
      * @param mixed $_result
      * @param mixed $_secondaryStatus
      */
-    public function __construct($_status = false, $_message = null, $_result = null, $_secondaryStatus = null) {
-        self::setStatus($_status);
+    public function __construct( $_primaryStatus = false, $_message = null, $_result = null, $_secondaryStatus = null ) {
+        self::setStatus($_primaryStatus);
         self::setMessage($_message);
         self::setResult($_result);
         self::setSecondaryStatus( $_secondaryStatus );
     }
 
-    public function setStatus($_status) {
-        $this->status = $_status;
+    public function setStatus($_primaryStatus) {
+        $this->primaryStatus = $_primaryStatus;
         return $this;
     }
 
-    public function setStatusAndMessage($_status, $_message) {
-        $this->status = $_status;
+    public function setStatusAndMessage($_primaryStatus, $_message) {
+        $this->primaryStatus = $_primaryStatus;
         $this->message= $_message;
         return $this;
     }
 
     public function getStatus() {
-        return $this->status;
+        return $this->primaryStatus;
     }
 
     public function setMessage($_message) {
@@ -78,20 +78,21 @@ class ModelResult {
     public function toArray()
     {
         return [
-            'status' => $this->status,
+            'status' => $this->primaryStatus,
             'message' => $this->message,
-            'result' => $this->result
+            'result' => $this->result,
+            'secondaryStatus' => $this->secondaryStatus
         ];
     }
 
     public function statusIn(array $_statusList = [])
     {
-        return in_array($this->status, $_statusList);
+        return in_array($this->primaryStatus, $_statusList);
     }
 
     public function isStatus($_status)
     {
-        return $this->status == $_status;
+        return $this->primaryStatus == $_status;
     }
 
     /**
@@ -120,5 +121,12 @@ class ModelResult {
     public function secondaryStatusIn(array $_statusList = [])
     {
         return in_array($this->secondaryStatus, $_statusList);
+    }
+
+    public function setStatuses( $_primaryStatus, $_secondaryStatus )
+    {
+        $this->primaryStatus = $_primaryStatus;
+        $this->secondaryStatus = $_secondaryStatus;
+        return $this;
     }
 }
