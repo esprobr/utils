@@ -1,5 +1,6 @@
 {
   "name"  : "esprobr/utils",
+  "license": "GPL-2.0-only",
   "description": "Helper Classes",
   "version" : "0.0.1",
   "authors": [
@@ -10,7 +11,8 @@
   ],
   "require": {
     "php": ">=5.6.0",
-    "ext-soap": "curl",
+    "ext-curl": "*",
+    "lib-curl": ">=7.26.0",
 
     "symfony/http-foundation": "*"
   },
